@@ -4,7 +4,7 @@ spring:
   cloud:
     sentinel:
       transport:
-        dashboard: wuzx.cool:30007
+        dashboard: sentinel:8080
       eager: true # ???????????dashboard
   application:
     name: springcloud-alibaba
