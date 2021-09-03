@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: wuzx.cool:30007
+      eager: true # ???????????dashboard
+  application:
+    name: springcloud-alibaba
