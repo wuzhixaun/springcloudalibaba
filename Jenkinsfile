@@ -19,7 +19,7 @@ podTemplate(label: label, containers: [
     def registryUrl = "registry-vpc.cn-shenzhen.aliyuncs.com"
     def imageEndpoint = "wuzhixuan/sentinel-dashboard"
     // 镜像
-    def image = "${registryUrl}/${imageEndpoint}:latest"
+    def image = "${registryUrl}/${imageEndpoint}:imageTag"
     
     stage('单元测试') {
       echo "测试阶段"
