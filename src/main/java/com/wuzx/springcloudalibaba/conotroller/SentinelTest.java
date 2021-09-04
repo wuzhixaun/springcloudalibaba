@@ -1,4 +1,4 @@
-package com.wuzx.springcloudalibaba.admin;
+package com.wuzx.springcloudalibaba.conotroller;
 
 
 import com.alibaba.csp.sentinel.Entry;
