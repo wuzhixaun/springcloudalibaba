@@ -15,7 +15,7 @@ spring:
             dataId: my-sentinel
             groupId: DEFAULT_GROUP #nacos中存储规则的groupId
             rule-type: flow #定义存储的规则类型,该参数是spring cloud alibaba升级到0.2.2之后增加的配置
-
+            data-type: json
 
 
 
