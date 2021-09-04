@@ -36,6 +36,14 @@
             <version>2021.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-datasource-nacos -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+            <version>1.8.2</version>
+        </dependency>
+
+
 
     </dependencies>
 
