@@ -19,7 +19,7 @@ podTemplate(label: label, containers: [
     def registryUrl = "registry-vpc.cn-shenzhen.aliyuncs.com"
     def imageEndpoint = "wuzhixuan/spring-cloud-alibaba"
     // 镜像
-    def image = "${registryUrl}/${imageEndpoint}:imageTag"
+    def image = "${registryUrl}/${imageEndpoint}:${imageTag}"
     
     stage('单元测试') {
       echo "测试阶段"

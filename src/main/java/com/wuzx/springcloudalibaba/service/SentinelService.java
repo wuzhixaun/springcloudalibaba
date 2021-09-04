@@ -12,7 +12,7 @@ public class SentinelService {
     public String getBody() {
         // 真正的业务逻辑
         // 被保护的资源
-        return "给我你的肉体";
+        return "给你我的肉体哦";
     }
 
 
