@@ -13,8 +13,6 @@ spring:
       config:
         server-addr: nacos-headless:8848
         file-extension: yaml
-        namespace: wuzx
-        group: DEFAULT_GROUP
 
 
 xxoo: 吴志轩
