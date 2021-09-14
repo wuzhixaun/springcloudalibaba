@@ -19,6 +19,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+              name: liveness-port
+          livenessProbe:
+            httpGet:
+              port: liveness-port
+              path: /healthz
+            initialDelaySeconds: 10
+            periodSeconds: 10
 
 ---
 apiVersion: v1
