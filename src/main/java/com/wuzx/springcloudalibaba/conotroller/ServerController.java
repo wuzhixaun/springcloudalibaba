@@ -36,7 +36,6 @@ public class ServerController {
         serverInfo.setFreeMemory(r.freeMemory()); // JVM可以使用的剩余内存
         serverInfo.setJavaVersion(props.getProperty("java.version")); // Java的运行环境版本
         serverInfo.setServerTime(new Date());
-        int a = 100 / 0;
         return serverInfo;
     }
 }
