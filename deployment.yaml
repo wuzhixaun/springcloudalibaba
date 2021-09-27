@@ -8,21 +8,32 @@ spec:
   selector:
     matchLabels:
       app: spring-cloud-alibaba
+  #设置滚动升级策略
+  #Kubernetes在等待设置的时间后才开始进行升级，例如5秒
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      #升级过程中Deployment控制器最多可以删除多少个旧Pod，主要用于提供缓冲时间
+      maxUnavailable: 1
+      #升级过程中最多可以比原先设置多出的Pod数量
+      maxSurge: 1
   template:
     metadata:
       labels:
         app: spring-cloud-alibaba
     spec:
+      restartPolicy: Always
       #构建初始化镜像(通过初始化镜像的方式集成SkyWalking Agent)
       initContainers:
-        - image: registry.cn-shenzhen.aliyuncs.com/devan/skywalking-agent-sidecar:8.5.0
+        - image: registry.cn-shenzhen.aliyuncs.com/wuzhixuan/sw-agent-sidecar:latest
           name: sw-agent-sidecar
           imagePullPolicy: IfNotPresent
           command: [ "sh" ]
           args:
             [
                 "-c",
-                "cp -R /usr/skywalking/agent/* /skywalking/agent",
+                "mkdir -p /skywalking/agent && cp -r /usr/skywalking/agent/* /skywalking/agent",
             ]
           volumeMounts:
             - mountPath: /skywalking/agent
@@ -41,7 +52,6 @@ spec:
               path: /healthz
             initialDelaySeconds: 10
             periodSeconds: 10
-
           env:
             - name: TZ
               value: Asia/Shanghai
@@ -49,13 +59,16 @@ spec:
             - name: JAVA_TOOL_OPTIONS
               value: -javaagent:/usr/skywalking/agent/skywalking-agent.jar
             - name: SW_AGENT_NAME
-              value: spring-boot-skywalking-demo
+              value:  spring-cloud-alibaba
             - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
               # FQDN: servicename.namespacename.svc.cluster.local
-              value: skywalking-oap.kube-ops.svc:11800
+              value: skywalking-oap.kube-ops.svc.cluster.local:11800
           volumeMounts:
             - mountPath: /usr/skywalking/agent
               name: sw-agent
+      volumes:
+        - name: sw-agent
+          emptyDir: {}
 
 ---
 apiVersion: v1
