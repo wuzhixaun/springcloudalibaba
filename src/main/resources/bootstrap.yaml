@@ -8,13 +8,49 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos-headless:8848
+        server-addr: wuzx.cool:30000
 
       config:
-        server-addr: nacos-headless:8848
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: yaml
 
+knife4j:
+  enable: true
+  setting:
+    # Knife4j默认显示中文(zh-CN),如果开发者想直接显示英文(en-US)，在通过该配置进行设置即可
+    language: zh-CN
+    # 对于调试中的请求参数是否缓存进行开启配置，该参数默认为true
+    enableRequestCache: false
+    swaggerModelName: 我是自定义的Model名称
+    enableHomeCustom: true # 开启自定义主页内容
+    homeCustomLocation: classpath:markdown/home.md
+    enableFooter: false # 禁用默认的Footer显示，如果要自定义的话该属性必须设置为false,否则不会生效
+    enableFooterCustom: true #该属性为Boolean值,默认false，如果开发者要自定义Footer内容,该选项设置为true
+    footerCustomContent: Apache License 2.0 | Copyright  2019-[浙江八一菜刀研究基地](https://gitee.com/xiaoym/knife4j)
+    enableDebug: true # 启用调试功能,默认值为true(代表开启调试)，如果要禁用调试，该值设为false
+    enableSearch: true # 启用搜索功能,默认值为true(代表开启搜索)，如果要禁用搜索，该值设为false
+  # 自定义文档 group在配置文件里有设置，需要一致
+  documents:
+    -
+      group: 1.2.x
+      name: 自定义文档
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/*
+    -
+      group: 1.2.x
+      name: 接口签名
+      # 某一个文件夹下单个.md文件
+      locations: classpath:markdown/sign.md
 
+  # 开启生产环境屏蔽
+# production: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    # Basic认证用户名
+    username: wuzhixuan
+    # Basic认证密码
+    password: 123
 
 
 

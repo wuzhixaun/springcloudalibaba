@@ -1,6 +1,9 @@
 package com.wuzx.springcloudalibaba.conotroller;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.wuzx.springcloudalibaba.model.ServerInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,11 +20,13 @@ import java.util.logging.Logger;
  * @Description 服务器
  * @createTime 2021年09月14日 14:50:00
  */
-
+@Api(tags = "服务器")
 @RestController
 public class ServerController {
     private static Logger logger = Logger.getLogger("ServerController");
 
+    @ApiOperationSupport(author = "wuzhixuan")
+    @ApiOperation(value = "获取服务器建康状态")
     @GetMapping("/healthz")
     public ServerInfo getHealthInfo() {
         logger.info("ServerController getHealthInfo");
