@@ -3,13 +3,14 @@ package com.wuzx.springcloudalibaba;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication( exclude = SecurityAutoConfiguration.class)
 public class SpringcloudalibabaApplication {
 
     public static void main(String[] args) {
