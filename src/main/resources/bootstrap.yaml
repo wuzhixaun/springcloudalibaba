@@ -15,14 +15,14 @@ spring:
         file-extension: yaml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://wuzx.cool:30006/db_activiti6?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://wuzx.cool:30006/db_activiti6?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&nullCatalogMeansCurrent=true
     username: root
     password: 123456
   # activiti配置
   activiti:
     check-process-definitions: false # 启动的时候是否自动部署流程
     history-level: audit # 除activity级别会保存的数据外，还会保存全部的流程任务及其属性。audit为history的默认值
-    database-schema-update: activiti # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。（开发时常用）
+    database-schema-update: true # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。（开发时常用）
 
 
 knife4j:
@@ -57,7 +57,7 @@ knife4j:
 # production: true
   # 开启Swagger的Basic认证功能,默认是false
   basic:
-    enable: true
+    enable: false
     # Basic认证用户名
     username: wuzhixuan
     # Basic认证密码
