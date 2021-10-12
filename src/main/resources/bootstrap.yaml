@@ -22,7 +22,8 @@ spring:
   activiti:
     check-process-definitions: false # 启动的时候是否自动部署流程
     history-level: audit # 除activity级别会保存的数据外，还会保存全部的流程任务及其属性。audit为history的默认值
-    database-schema-update: true # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。（开发时常用）
+      # activiti会对数据库中所有表进行更新操作。如果表不存在，则自动创建。（开发时常用）
+    database-schema-update: false
 
 
 knife4j:
