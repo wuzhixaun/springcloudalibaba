@@ -1,4 +1,4 @@
-package com.wuzx.springcloudalibaba.processInstance;
+package com.wuzx.springcloudalibaba.personTask;
 
 import com.wuzx.springcloudalibaba.SpringcloudalibabaApplicationTests;
 import org.activiti.engine.HistoryService;
@@ -12,24 +12,25 @@ import org.activiti.engine.task.Task;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
+public class PersonTaskTest3 extends SpringcloudalibabaApplicationTests {
 
+
+    private String key = "personTask3";
 
     @Resource
     private RepositoryService repositoryService;
 
-
-    private String key = "first";
     @Test
     public void deployment() {
-        String name = "first";
         final Deployment deploy = repositoryService.createDeployment()
                 .name("请假流程")
                 .key(key)
-                .addClasspathResource("processes/" + name + ".bpmn20.xml")
-                .addClasspathResource("processes/" + name + ".png")
+                .addClasspathResource("processes/" + key + ".bpmn20.xml")
+                .addClasspathResource("processes/" + key + ".png")
                 .category("HR")
                 .deploy();
 
@@ -46,6 +47,9 @@ public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
 
     @Test
     public void start() {
+
+        Map<String, Object> value = new HashMap<>();
+        value.put("userId", "吴志旋");
         final ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key);
 
         System.out.println("流程实例Id：" + processInstance.getId());
@@ -60,7 +64,7 @@ public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
 
     @Test
     public void findTask() {
-        String assigne = "李四";
+        String assigne = "吴志旋";
 
         final List<Task> list = taskService.createTaskQuery().taskAssignee(assigne).list();
 
@@ -97,9 +101,17 @@ public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
 
     @Test
     public void completeTask() {
-        taskService.complete("4d8b45f3-2b6f-11ec-9649-42bcc292444b");
+        taskService.complete("0cbb5f9e-2c43-11ec-8a27-a20c72d2422b");
         System.out.println("完成");
     }
 
+    @Test
+    public void setAssigner() {
+        taskService.setAssignee("a864a4be-2c4b-11ec-8b11-a20c72d2422b","斗之气");
+    }
 
+    @Test
+    public void delegateTask() {
+        taskService.delegateTask("a864a4be-2c4b-11ec-8b11-a20c72d2422b","女王11");
+    }
 }

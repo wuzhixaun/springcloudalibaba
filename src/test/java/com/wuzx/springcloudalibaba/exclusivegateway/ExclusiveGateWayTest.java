@@ -1,4 +1,4 @@
-package com.wuzx.springcloudalibaba.processInstance;
+package com.wuzx.springcloudalibaba.exclusivegateway;
 
 import com.wuzx.springcloudalibaba.SpringcloudalibabaApplicationTests;
 import org.activiti.engine.HistoryService;
@@ -12,24 +12,25 @@ import org.activiti.engine.task.Task;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
+public class ExclusiveGateWayTest extends SpringcloudalibabaApplicationTests {
 
+
+    private String key = "exclusiveGateWay";
 
     @Resource
     private RepositoryService repositoryService;
 
-
-    private String key = "first";
     @Test
     public void deployment() {
-        String name = "first";
         final Deployment deploy = repositoryService.createDeployment()
-                .name("请假流程")
+                .name("财务审批")
                 .key(key)
-                .addClasspathResource("processes/" + name + ".bpmn20.xml")
-                .addClasspathResource("processes/" + name + ".png")
+                .addClasspathResource("processes/" + key + ".bpmn20.xml")
+                .addClasspathResource("processes/" + key + ".png")
                 .category("HR")
                 .deploy();
 
@@ -60,7 +61,7 @@ public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
 
     @Test
     public void findTask() {
-        String assigne = "李四";
+        String assigne = "张三";
 
         final List<Task> list = taskService.createTaskQuery().taskAssignee(assigne).list();
 
@@ -97,9 +98,9 @@ public class ProcessInstanceTest extends SpringcloudalibabaApplicationTests {
 
     @Test
     public void completeTask() {
-        taskService.complete("4d8b45f3-2b6f-11ec-9649-42bcc292444b");
+        Map<String, Object> value = new HashMap<>();
+        value.put("money", 11000);
+        taskService.complete("8c2cd895-2c39-11ec-a037-0ad2f2a4681b", value);
         System.out.println("完成");
     }
-
-
 }
