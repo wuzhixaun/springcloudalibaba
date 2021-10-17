@@ -38,7 +38,7 @@ public class ActivitiConfiguration implements ProcessEngineConfigurationConfigur
 		processEngineConfiguration.setCustomPostDeployers(customPostDeployers);
 		processEngineConfiguration.setIdGenerator(new StrongUuidGenerator());
 		List<ActivitiEventListener> eventListeners = new ArrayList<>();
-//		eventListeners.add(myEventListener);
+		eventListeners.add(myEventListener);
 		processEngineConfiguration.setEventListeners(eventListeners);
 	}
 }

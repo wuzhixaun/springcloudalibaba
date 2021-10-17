@@ -51,12 +51,13 @@ public class MyEventListener implements ActivitiEventListener{
                 }
                 break;
             case TASK_ASSIGNED:
+                System.out.println("有任务执行人了");
                 break;
             case TASK_CREATED:
+                System.out.println("有任务被创建");
                 break;
-
             default:
-//                System.out.println("Event received: " + event.getType());
+                System.out.println("Event received: " + event.getType());
         }
     }
 
